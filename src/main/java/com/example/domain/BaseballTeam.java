@@ -8,7 +8,7 @@ public class BaseballTeam {
     private String leagueName;
     private String teamName;
     private String headQuarters;
-    private Date inauguration;
+    private String inauguration;
     private String history;
 
     public Integer getId() {
@@ -43,11 +43,11 @@ public class BaseballTeam {
         this.headQuarters = headQuarters;
     }
 
-    public Date getInauguration() {
+    public String getInauguration() {
         return inauguration;
     }
 
-    public void setInauguration(Date inauguration) {
+    public void setInauguration(String inauguration) {
         this.inauguration = inauguration;
     }
 

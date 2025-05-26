@@ -10,6 +10,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * teamsテーブルを操作するリポジトリ.
+ */
 @Repository
 public class BaseballTeamRepository {
     private static final RowMapper<BaseballTeam> BASEBALL_TEAM_ROW_MAPPER = (rs, i) -> {
@@ -27,6 +30,11 @@ public class BaseballTeamRepository {
     @Autowired
     private NamedParameterJdbcTemplate template;
 
+    /**
+     * IDを基に野球チームを検索する
+     * @param id チームID
+     * @return ベースボールチームオブジェクト
+     */
     public BaseballTeam findById(Integer id){
         String sql = "SELECT id, league_name, team_name, headquarters, inauguration, history FROM teams WHERE id = :id;";
 
@@ -35,6 +43,10 @@ public class BaseballTeamRepository {
         return template.queryForObject(sql, param, BASEBALL_TEAM_ROW_MAPPER);
     }
 
+    /**
+     * 野球チームを全て検索する
+     * @return 野球チームリスト
+     */
     public List<BaseballTeam> findAll(){
         String sql = "SELECT id, league_name, team_name, headquarters, inauguration, history FROM teams ORDER BY inauguration;";
         List<BaseballTeam> baseballTeamList = template.query(sql, BASEBALL_TEAM_ROW_MAPPER);

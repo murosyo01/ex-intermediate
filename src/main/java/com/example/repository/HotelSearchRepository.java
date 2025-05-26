@@ -11,6 +11,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * hotelsテーブルを操作するリポジトリ.
+ */
 @Repository
 public class HotelSearchRepository {
     private static final RowMapper<Hotel> HOTEL_ROW_MAPPER = (rs, i) -> {
@@ -30,7 +33,7 @@ public class HotelSearchRepository {
     private NamedParameterJdbcTemplate template;
 
     /**
-     * 値段以下のホテルを検索
+     * 値段以下のホテルを検索.
      * @param price 価格
      * @return 価格以下のホテルオブジェクトのリスト
      */

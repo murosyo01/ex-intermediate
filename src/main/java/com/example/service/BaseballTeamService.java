@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * ベースボールチームリポジトリを操作するサービス
+ * ベースボールチームリポジトリを操作するサービス.
  */
 @Service
 @Transactional
@@ -20,7 +20,8 @@ public class BaseballTeamService {
     private BaseballTeamRepository baseballTeamRepository;
 
     /**
-     * 指定したIDをもつ雇用者を検索
+     * 指定したIDをもつ雇用者を検索.
+     *
      * @param id チームID
      * @return ベースボールチームオブジェクト
      */
@@ -29,7 +30,8 @@ public class BaseballTeamService {
     }
 
     /**
-     * 全野球チームを検索
+     * 全野球チームを検索.
+     *
      * @return ベースボールチームオブジェクトのリスト
      */
     public List<BaseballTeam> findAll(){

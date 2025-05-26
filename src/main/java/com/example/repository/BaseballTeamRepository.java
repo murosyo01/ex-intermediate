@@ -31,7 +31,8 @@ public class BaseballTeamRepository {
     private NamedParameterJdbcTemplate template;
 
     /**
-     * IDを基に野球チームを検索する
+     * IDを基に野球チームを検索する.
+     *
      * @param id チームID
      * @return ベースボールチームオブジェクト
      */
@@ -44,7 +45,8 @@ public class BaseballTeamRepository {
     }
 
     /**
-     * 野球チームを全て検索する
+     * 野球チームを全て検索する.
+     *
      * @return 野球チームリスト
      */
     public List<BaseballTeam> findAll(){

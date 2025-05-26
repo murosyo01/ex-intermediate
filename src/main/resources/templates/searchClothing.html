@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h3>
+        衣類検索
+    </h3>
+
+    <form th:action="@{/clothing/post}" method="post" th:object="${clothingSearchForm}">
+        <div class = "radio" th:each = "gender, status : ${genderList}">
+            <label th:for = "gender + ${gender}">
+                <input th:id = "gender + ${gender}"
+                       type = "radio"
+                       name = "gender"
+                       th:value = "${status.index}"
+                       th:text = "${gender}"
+                       th:field = "*{gender}"
+                >
+            </label>
+        </div>
+        <div class="select">
+            <label>
+                <select name = "color">
+                    <option th:each = "color : ${colorList}"
+                            name = "color"
+                            th:value = "${color}"
+                            th:text = "${color}"
+                            th:field = "*{color}"
+                    ></option>
+                </select>
+            </label>
+        </div>
+
+        <button type="submit">検索</button>
+    </form>
+
+    <div th:each="clothing : ${clothingList}">
+        <table border="1">
+            <tr>
+                <td>
+                    ジャンル
+                </td>
+                <td>
+                    <span th:text="${clothing.genre}">ジャンル名</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    サイズ
+                </td>
+                <td>
+                    <span th:text="${clothing.size}">サイズ名</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    価格
+                </td>
+                <td>
+                    <span th:text="${#numbers.formatInteger(clothing.price, 0, 'COMMA')}">価格</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div th:if="${#lists.isEmpty(clothingList)}">
+        <p>該当する衣類は見つかりませんでした。</p>
+    </div>
+</body>
+</html>

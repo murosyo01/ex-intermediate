@@ -8,6 +8,11 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
+/**
+ * clothesテーブルを操作するリポジトリ.
+ */
 @Repository
 public class ClothingSearchRepository {
     private static final RowMapper<Clothing> CLOTHING_ROW_MAPPER = (rs, i) -> {
@@ -26,13 +31,17 @@ public class ClothingSearchRepository {
     @Autowired
     NamedParameterJdbcTemplate template;
 
-    public Clothing searchByColorAndGender(String color, Integer gender){
+    /**
+     * 色と性別が一致する衣類を検索.
+     * @param color 色
+     * @param gender 性別
+     * @return 衣類オブジェクトのリスト
+     */
+    public List<Clothing> searchByColorAndGender(String color, Integer gender){
         String sql = "SELECT id, category, genre, gender, color, price, size FROM clothes WHERE color = :color AND gender = :gender;";
 
         SqlParameterSource param = new MapSqlParameterSource().addValue("color", color).addValue("gender", gender);
 
-        return template.queryForObject(sql, param, CLOTHING_ROW_MAPPER);
+        return template.query(sql, param, CLOTHING_ROW_MAPPER);
     }
-
-
 }

@@ -17,6 +17,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
+/**
+ * ホテルに対する操作を指示するコントローラー.
+ */
 @Controller
 @RequestMapping("/hotelSearch")
 public class HotelSearchController {

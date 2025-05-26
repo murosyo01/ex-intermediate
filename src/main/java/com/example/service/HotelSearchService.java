@@ -21,7 +21,7 @@ public class HotelSearchService {
      * @param price 価格
      * @return ホテルオブジェクト
      */
-    public List<Hotel> findByPrice(Integer price){
-        return hotelSearchRepository.findByPrice(price);
+    public List<Hotel> searchByLessThanPrice(Integer price){
+        return hotelSearchRepository.searchByLessThanPrice(price);
     }
 }

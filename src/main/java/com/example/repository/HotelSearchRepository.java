@@ -37,9 +37,8 @@ public class HotelSearchRepository {
      * @param price 価格
      * @return 価格以下のホテルオブジェクトのリスト
      */
-    public List<Hotel> findByPrice(Integer price){
-        String sql = "SELECT id, area_name, hotel_name, address, nearest_station, price, parking FROM teams WHERE price <= :price;";
-        List<Hotel> hotelList = template.query(sql, HOTEL_ROW_MAPPER);
+    public List<Hotel> searchByLessThanPrice(Integer price){
+        String sql = "SELECT id, area_name, hotel_name, address, nearest_station, price, parking FROM hotels WHERE price <= :price ORDER BY price DESC;";
 
         SqlParameterSource param = new MapSqlParameterSource().addValue("price", price);
 

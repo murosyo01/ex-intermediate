@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class BaseballTeamService {
@@ -13,7 +15,11 @@ public class BaseballTeamService {
     @Autowired
     private BaseballTeamRepository baseballTeamRepository;
 
-    public BaseballTeam findByTeamName(String teamName){
-        return baseballTeamRepository.findByTeamName(teamName);
+    public BaseballTeam findById(Integer id){
+        return baseballTeamRepository.findById(id);
+    }
+
+    public List<BaseballTeam> findAll(){
+        return baseballTeamRepository.findAll();
     }
 }

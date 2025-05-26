@@ -8,6 +8,8 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class BaseballTeamRepository {
     private static final RowMapper<BaseballTeam> BASEBALL_TEAM_ROW_MAPPER = (rs, i) -> {
@@ -25,11 +27,22 @@ public class BaseballTeamRepository {
     @Autowired
     private NamedParameterJdbcTemplate template;
 
-    public BaseballTeam findByTeamName(String teamName){
-        String sql = "SELECT id, league_name, team_name, headquarters, inauguration, history FROM teams WHERE team_name = :teamName;";
+    public BaseballTeam findById(Integer id){
+        String sql = "SELECT id, league_name, team_name, headquarters, inauguration, history FROM teams WHERE id = :id;";
 
-        SqlParameterSource param = new MapSqlParameterSource().addValue("teamName", teamName);
+        SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
 
         return template.queryForObject(sql, param, BASEBALL_TEAM_ROW_MAPPER);
+    }
+
+    public List<BaseballTeam> findAll(){
+        String sql = "SELECT id, league_name, team_name, headquarters, inauguration, history FROM teams;";
+        List<BaseballTeam> baseballTeamList = template.query(sql, BASEBALL_TEAM_ROW_MAPPER);
+
+        if (baseballTeamList.isEmpty()){
+            return null;
+        }
+
+        return baseballTeamList;
     }
 }

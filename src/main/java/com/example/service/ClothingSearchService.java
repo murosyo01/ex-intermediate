@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
  * 衣類リポジトリを操作するサービス.
  */
 @Service
-public class ClothingSearch {
+public class ClothingSearchService {
     @Autowired
     private ClothingSearchRepository clothingSearchRepository;
 

@@ -14,6 +14,6 @@ public class ClothingSearch {
     private ClothingSearchRepository clothingSearchRepository;
 
     public Clothing searchByColorAndGender(String color, Integer gender){
-
+        return clothingSearchRepository.searchByColorAndGender(color, gender);
     }
 }
